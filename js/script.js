@@ -34,21 +34,24 @@ class WebFetch {
                 <li>Disponibilitá: ${this.disponibile}</li>
                 <li>Saldo applicabile: ${this.saldo}</li>
             </ul>
-              <button onclick="${() => this.getAcquistoCapo}">Calcola il costo totale</button>
-            <p class="costo-totale"></p>
-        </div
+            <div class="show-costo"></div>
+            </div>
+        </div>
     `;
     }
     getSaldoAcquisto() {
         let calcDiffSaldo = (this.prezzoivainclusa * this.saldo) / 100;
         this.diffSaldo = calcDiffSaldo;
+        console.log(this.diffSaldo);
     }
     getAcquistoCapo() {
-        this.getAcquistoCapo();
+        // this.getSaldoAcquisto();
+        console.log("Si é attivato il metodo getAcquistoCapos");
         let costoTotale;
         costoTotale = this.prezzoivainclusa - this.diffSaldo;
-        let costoTotaleHtml = document.querySelector(".costo-totale");
-        costoTotaleHtml.innerHTML = `${costoTotale}`;
+        console.log(costoTotale);
+        let costoTotaleHtml = document.querySelector(".show-costo");
+        costoTotaleHtml.innerHTML = `<p>Costo totale: ${costoTotale}</p>`;
     }
 }
 // console.log(promise);
@@ -58,5 +61,7 @@ promise.then((responseJson) => {
     responseJson.map((element) => {
         let elementFetch = new WebFetch(element.id, element.codprod, element.collezione, element.capo, element.modello, element.quantita, element.colore, element.prezzoivaesclusa, element.prezzoivainclusa, element.disponibile, element.saldo);
         elementFetch.renderHtml();
+        elementFetch.getSaldoAcquisto();
+        elementFetch.getAcquistoCapo();
     });
 });

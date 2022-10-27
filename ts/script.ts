@@ -60,10 +60,9 @@ class WebFetch {
                 <li>Disponibilitá: ${this.disponibile}</li>
                 <li>Saldo applicabile: ${this.saldo}</li>
             </ul>
-              <button onclick="${() =>
-					this.getAcquistoCapo}">Calcola il costo totale</button>
-            <p class="costo-totale"></p>
-        </div
+            <div class="show-costo"></div>
+            </div>
+        </div>
     `;
 	}
 
@@ -71,26 +70,30 @@ class WebFetch {
 		let calcDiffSaldo: number = (this.prezzoivainclusa * this.saldo) / 100;
 
 		this.diffSaldo = calcDiffSaldo;
+		console.log(this.diffSaldo);
 	}
 
 	getAcquistoCapo(): void {
-		this.getAcquistoCapo();
+		// this.getSaldoAcquisto();
+		console.log("Si é attivato il metodo getAcquistoCapos");
 
 		let costoTotale: number;
 		costoTotale = this.prezzoivainclusa - this.diffSaldo;
 
-		let costoTotaleHtml = document.querySelector(
-			".costo-totale"
-		) as HTMLParagraphElement;
+		console.log(costoTotale);
 
-		costoTotaleHtml.innerHTML = `${costoTotale}`;
+		let costoTotaleHtml = document.querySelector(
+			".show-costo"
+		) as HTMLElement;
+
+		costoTotaleHtml.innerHTML = `<p>Costo totale: ${costoTotale}</p>`;
 	}
 }
 
 // console.log(promise);
 
 let promise = fetch(URLJson).then((response) => response.json());
-promise.then((responseJson: any) => {
+promise.then((responseJson) => {
 	console.log(responseJson);
 	responseJson.map((element: any) => {
 		let elementFetch = new WebFetch(
@@ -108,5 +111,7 @@ promise.then((responseJson: any) => {
 		);
 
 		elementFetch.renderHtml();
+		elementFetch.getSaldoAcquisto();
+		elementFetch.getAcquistoCapo();
 	});
 });

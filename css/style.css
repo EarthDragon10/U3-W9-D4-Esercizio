@@ -9,12 +9,13 @@ body {
 	background-color: grey;
 }
 
-.container {
+#container {
 	padding: 2rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	gap: 20px;
 }
 
 .card {
@@ -22,4 +23,6 @@ body {
 	border: black 1px solid;
 	box-shadow: 4px 4px 4px;
 	padding: 15px;
+	line-height: 2;
+	background-color: white;
 }
