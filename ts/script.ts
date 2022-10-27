@@ -61,6 +61,7 @@ class WebFetch {
                 <li>Saldo applicabile: ${this.saldo}</li>
             </ul>
             <div class="show-costo"></div>
+          
             </div>
         </div>
     `;
@@ -93,8 +94,10 @@ class WebFetch {
 // console.log(promise);
 
 let promise = fetch(URLJson).then((response) => response.json());
+
 promise.then((responseJson) => {
 	console.log(responseJson);
+
 	responseJson.map((element: any) => {
 		let elementFetch = new WebFetch(
 			element.id,

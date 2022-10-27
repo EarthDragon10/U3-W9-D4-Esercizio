@@ -35,6 +35,7 @@ class WebFetch {
                 <li>Saldo applicabile: ${this.saldo}</li>
             </ul>
             <div class="show-costo"></div>
+          
             </div>
         </div>
     `;
